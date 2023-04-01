@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 5%;
+}
+
+/* set backgorund image */
+body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXU_qFpronnOlaBzqWLOY4rZMKQEd2hWGxmKE3C7_M0g&usqp=CAU&ec=48665699);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* center a container */
+.card {
+    margin: 0 auto;
+    width: 450px;
+    height: 440px;
+    min-height: 400px;
+    min-width: 400px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.547);
+    background-color: rgb(51, 132, 218);
+    box-shadow:4px 2px 10px 9px rgb(255, 255, 255);
+}
+.card-header h4
+{
+    font-size:25px;
+}
+.card-header {
+    background-color: rgb(83, 104, 63);
+}
+
+/* toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height:19px;
+    width: 19px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+body {
+    background-Color: black;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+/* Time list styles */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.744);
+    border-radius: 10px;
+    margin-top:5px;
+}
+
+ul li {
+    padding: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+    align-items: center;
+    font-size: 17px;
+    color: rgba(230, 180, 0, 0.584);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.delete {
+    height: 35px;
+    padding: 4px 0px;
+    border-radius: 3px;
+    transition: all 0.6s;
+}
+
+/* delete and switch styles */
+.delete:hover {
+    background: #e28e8e;
+    cursor: pointer;
+}
+
+.switch {
+    margin-left: 30%;
+}
+
+/* custom scrollbar for time list */
+#list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#list::-webkit-scrollbar-thumb {
+    background-color: brown;
+    border-radius: 10px;
+    border: transparent;
+}
+
+#list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(165, 42, 42, 0.815);
+}
+
+/* UL div styles */
+
+ #Time_list{
+    width: 160px;
+    height:10px;
+    background-color: rgb(243, 243, 243);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    padding-bottom:30px;
+}
+#Time_list #Time_in_list
+{
+    color:brown;
+}
+/* clock  */
+#clock
+{
+ color: brown;
+ background-color: rgb(255, 183, 90);
+ border-radius: 10px;
+ font-size: 30px;
+ margin: 0 auto;
+ width: 200px;
+}
+#clock #hr,#min,#sec,#clock_AM_PM
+{
+    height: 200px;
+    margin: 4px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    width:200px; 
+}
+#Alarm_heading
+{
+    color: brown;
+    font-weight: 1000 ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#Alarm_time
+{
+    background-color: rgb(225, 162, 78);
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: start;
+    height: 40px;
+    padding: 6px;
+}
+#set
+{
+ margin:0 auto;
+ width: 100%;
+ margin-top:10px;
+}
