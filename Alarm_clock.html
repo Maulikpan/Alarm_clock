@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Animate CDN link -->
+  <link rel="stylesheet" href="https://cdnj s.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- Bootstrap css link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css ">
+  <!--External css file link -->
+  <link rel="stylesheet" href="Alarm.css">
+  <title>ALARM CLOCK</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 5%;
+    }
+
+    /* set backgorund image */
+    body {
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXU_qFpronnOlaBzqWLOY4rZMKQEd2hWGxmKE3C7_M0g&usqp=CAU&ec=48665699);
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* center a container */
+    .card {
+      margin: 0 auto;
+      width: 450px;
+      height: 440px;
+      min-height: 400px;
+      min-width: 400px;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.547);
+      background-color: rgb(51, 132, 218);
+      box-shadow: 4px 2px 10px 9px rgb(255, 255, 255);
+    }
+
+    .card-header h4 {
+      font-size: 25px;
+    }
+
+    .card-header {
+      background-color: rgb(83, 104, 63);
+    }
+
+    /* toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 19px;
+      width: 19px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    body {
+      background-Color: black;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    /* Time list styles */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      height: 200px;
+      overflow-y: scroll;
+      background-color: rgba(0, 0, 0, 0.744);
+      border-radius: 10px;
+      margin-top: 5px;
+    }
+
+    ul li {
+      padding: 9px;
+      display: flex;
+      justify-content: space-between;
+      align-items: inherit;
+      align-items: center;
+      font-size: 17px;
+      color: rgba(230, 180, 0, 0.584);
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+
+    .delete {
+      height: 35px;
+      padding: 4px 0px;
+      border-radius: 3px;
+      transition: all 0.6s;
+    }
+
+    /* delete and switch styles */
+    .delete:hover {
+      background: #e28e8e;
+      cursor: pointer;
+    }
+
+    .switch {
+      margin-left: 30%;
+    }
+
+    /* custom scrollbar for time list */
+    #list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #list::-webkit-scrollbar-thumb {
+      background-color: brown;
+      border-radius: 10px;
+      border: transparent;
+    }
+
+    #list::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(165, 42, 42, 0.815);
+    }
+
+    /* UL div styles */
+
+    #Time_list {
+      width: 160px;
+      height: 10px;
+      background-color: rgb(243, 243, 243);
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 5px;
+      padding-bottom: 30px;
+    }
+
+    #Time_list #Time_in_list {
+      color: brown;
+    }
+
+    /* clock  */
+    #clock {
+      color: brown;
+      background-color: rgb(255, 183, 90);
+      border-radius: 10px;
+      font-size: 30px;
+      margin: 0 auto;
+      width: 200px;
+    }
+
+    #clock #hr,
+    #min,
+    #sec,
+    #clock_AM_PM {
+      height: 200px;
+      margin: 4px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10%;
+      width: 200px;
+    }
+
+    #Alarm_heading {
+      color: brown;
+      font-weight: 1000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #Alarm_time {
+      background-color: rgb(225, 162, 78);
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: start;
+      height: 40px;
+      padding: 6px;
+    }
+
+    #set {
+      margin: 0 auto;
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Alarm container -->
+  <div class="card text-center">
+    <div class="card-header ">
+      <h4 class="animate__heartBeat">Alarm clock</h4>
+    </div>
+    <div class="card-body">
+      <div id="clock"><span id="hr">00</span><span class="dot">:</span><span id="min">00</span><span
+          class="dot">:</span><span id="sec">00</span><span id="clock_AM_PM">AM</span></div>
+      <div id="Alarm_time">
+        <span id="Alarm_heading">Select Alarm Time :</span>
+        <select name="" id="hour_select"></select>
+        <select name="" id="minute_select"></select>
+        <select name="" id="second_select"></select>
+        <select name="" id="AM_PM">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+      <div id="Buttons">
+        <button type="button" class="btn btn-success" id="set">&nbsp &nbspSet Alarm &nbsp</button>
+      </div>
+      <ul id="list">
+        <!-- <li>
+          <div id="Time_list"> <span id="Time_in_list"></span></div>
+          <label  data-btn="true"><input type="checkbox" data-id="SWITCH" data-btn="true" data-TimeID='12' checked><span class="slider round"></span>
+          </label>  
+          <img src="https://cdn-icons-png.flaticon.com/512/3687/3687412.png" class="delete" data-id="12" alt="...img">
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  <!-- Bootstrap script links -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+    integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+    crossorigin="anonymous"></script>
+  <!-- External js link -->
+  <script src="Alarm.js">
+    //ALL fetched Elements 
+    const hour_select = document.getElementById('hour_select');
+    const minute_select = document.getElementById('minute_select');
+    const second_select = document.getElementById('second_select');
+    const amPM_select = document.getElementById('AM_PM');
+    const clock_hr = document.getElementById('hr');
+    const clock_min = document.getElementById('min');
+    const clock_sec = document.getElementById('sec');
+    const clock_amPM = document.getElementById('clock_AM_PM');
+    const select_time = document.getElementById('Alarm_time');
+    const set_Alarm_btn = document.getElementById('set');
+    const cancel_Alarm_btn = document.getElementById('cancel');
+    const Ul_List = document.getElementById('list');
+    const Switch_Access = document.getElementById('Switch_Access');
+    let Times_For_Alarm_Ringing = [];
+    let Time_List_Array = [];
+    var SELECTED_HOUR = '0' + 1;
+    var SELECTED_MINUTE = '0' + 0;
+    var SELECTED_SECOND = '0' + 0;
+    var SELECTED_AMPM = 'AM';
+    var Timeobj;
+    var audio = new Audio('https://www.freespecialeffects.co.uk/soundfx/animals/duck1.wav');
+    audio.loop = true;
+    // IIEF FOR SET DROPDOWN MENU VALUES ON PAGE LOAD 
+    (function setDropdownValues() {
+      for (let hr = 1; hr <= 12; hr++) {
+        const option_hr = document.createElement('option');
+        option_hr.setAttribute('value', hr < 10 ? '0' + hr : hr);
+        option_hr.innerText = hr < 10 ? '0' + hr : hr;
+        hour_select.append(option_hr);
+      }
+      for (let min = 00; min <= 59; min++) {
+        const option_min = document.createElement('option');
+        option_min.setAttribute('value', min < 10 ? '0' + min : min);
+        option_min.innerText = min < 10 ? '0' + min : min;
+        minute_select.append(option_min);
+      }
+      for (let sec = 0; sec <= 59; sec++) {
+        const option_sec = document.createElement('option');
+        option_sec.setAttribute('value', sec < 10 ? '0' + sec : sec);
+        option_sec.innerText = sec < 10 ? '0' + sec : sec;
+        second_select.append(option_sec);
+      }
+    })();
+    // 12 hour clock
+    function updateClock() {
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+
+      // Add zeros to minutes and seconds and hours
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+      var amPM = hours < 12 ? 'AM' : 'PM';
+      // Convert to 12-hour format
+      if (hours > 12) {
+        hours -= 12;
+      }
+      if (hours == 00) {
+        hours = 12;
+      }
+      if (hours < 10) {
+        hours = '0' + hours;
+      }
+      // Update clock element with new time
+      clock_hr.innerText = hours;
+      clock_min.innerText = minutes;
+      clock_sec.innerText = seconds;
+      clock_amPM.innerText = amPM;
+      // ringing alarm on given time
+      for (let Time of Times_For_Alarm_Ringing) {
+        if (Time.HR__FOR_OBJ == clock_hr.innerText && Time.MIN_FOR_OBJ == clock_min.innerText && Time.SEC_FOR_OBJ == clock_sec.innerText && Time.AMPM_FOR_OBJ == clock_amPM.innerText) {
+          audio.pause();
+          audio.play();
+          setTimeout(() => {
+            showNotification(`Alarm ringing for ${Time.HR__FOR_OBJ}:${Time.MIN_FOR_OBJ}:${Time.SEC_FOR_OBJ}:${Time.AMPM_FOR_OBJ} Time`);
+          }, 1000);
+        }
+      }
+
+    }
+    // delete items from list
+    function deleteTime(TimeID) {
+      const newList = Time_List_Array.filter((Time) => { return Time.id != TimeID })
+      showNotification('Time Deleted successfully');
+      Time_List_Array = newList;
+      Times_For_Alarm_Ringing = newList;
+      audio.pause();
+      renderList();
+    }
+    // show notification
+    function showNotification(msg) {
+      alert(msg);
+    }
+    function takeInputFromDropDown() {
+      // take values from dropdown
+      SELECTED_HOUR = hour_select.value;
+      SELECTED_MINUTE = minute_select.value;
+      SELECTED_SECOND = second_select.value;
+      SELECTED_AMPM = amPM_select.value;
+      return;
+    }
+    function addTimeToDOM(Time) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+    <div id="Time_list">
+        <span id="Time_in_list">${Time.HR__FOR_OBJ}:${Time.MIN_FOR_OBJ}:${Time.SEC_FOR_OBJ}${Time.AMPM_FOR_OBJ}</span>
+    </div>
+    <label class="switch">
+        <input type="checkbox" id="Switch_Access" class="SWITCH"  data-id="${Time.id}" ${Time.TOGGLE_STATUS === true ? 'checked' : ''}>
+        <span class="slider round"></span>
+    </label>
+    <img src="https://cdn-icons-png.flaticon.com/512/3687/3687412.png" class="delete" data-id="${Time.id}" alt="...img">`;
+      const hr = document.createElement('hr');
+      hr.style.marginTop = "-2px";
+      hr.style.marginBottom = "2px";
+      Ul_List.append(hr);
+      Ul_List.append(li);
+    }
+    // render set time list in display
+    function renderList() {
+      Ul_List.innerText = '';
+      for (let i = 0; i < Time_List_Array.length; i++) {
+        addTimeToDOM(Time_List_Array[i]);
+      }
+    }
+    function SetAlarm() {
+      SELECTED_HOUR = hour_select.value;
+      SELECTED_MINUTE = minute_select.value;
+      SELECTED_SECOND = second_select.value;
+      SELECTED_AMPM = amPM_select.value;
+      // Check if selected time already exists in the list
+      const existingTime = Time_List_Array.find(time => time.HR__FOR_OBJ === SELECTED_HOUR && time.MIN_FOR_OBJ === SELECTED_MINUTE && time.SEC_FOR_OBJ === SELECTED_SECOND && time.AMPM_FOR_OBJ === SELECTED_AMPM);
+      if (existingTime) {
+        showNotification('This time is already set as an alarm');
+        return;
+      }
+      // Create object 
+      Timeobj = { HR__FOR_OBJ: SELECTED_HOUR, MIN_FOR_OBJ: SELECTED_MINUTE, SEC_FOR_OBJ: SELECTED_SECOND, AMPM_FOR_OBJ: SELECTED_AMPM, id: Date.now(), TOGGLE_STATUS: true };
+      Time_List_Array.push(Timeobj);
+      Times_For_Alarm_Ringing.push(Timeobj);
+      renderList();
+    }
+    var Toggled_Times_false = [];
+    var Toggled_Times_True = [];
+    // toggle Time in display 
+    function toggleTime(TimeID, Toggled_Obj) {
+      if (Toggled_Obj.TOGGLE_STATUS === true) {
+
+        Toggled_Obj.TOGGLE_STATUS = false;
+
+        let newFalse = Times_For_Alarm_Ringing.filter((Time) => { return Time.id == TimeID });
+        // check if newFalse[0] already exists in Toggled_Times_false before pushing it
+
+        if (!Toggled_Times_false.includes(newFalse[0])) {
+
+          Toggled_Times_false.push(newFalse[0]);
+        }
+
+        let oldRingng_Time_Update = Times_For_Alarm_Ringing.filter((Time) => { return Time.id != TimeID })
+
+        Times_For_Alarm_Ringing = oldRingng_Time_Update;
+        for (let False of Toggled_Times_false) {
+          False.TOGGLE_STATUS = false;
+        }
+        console.log('Times_For_Alarm_Ringing', Times_For_Alarm_Ringing);
+        console.log('Toggled_Times_true', Toggled_Times_True);
+        console.log('Toggled_Times_false', Toggled_Times_false);
+
+        return;
+      }
+      if (Toggled_Obj.TOGGLE_STATUS === false) {
+        Timeobj.TOGGLE_STATUS = true;
+        // filter Toggled_Times_false instead of Time_List_Array to get the correct object
+
+        Toggled_Times_True = Toggled_Times_false.filter((Time) => { return Time.id == TimeID });
+        Toggled_Times_false = Toggled_Times_false.filter((Time) => { return Time.id != TimeID })
+        for (let True of Toggled_Times_True) {
+          True.TOGGLE_STATUS = true;
+        }
+        console.log('Toggled Time True', Toggled_Times_True);
+        console.log('Toggled Time False', Toggled_Times_false);
+        // check if Toggled_Times_True[0] already exists in Times_For_Alarm_Ringing before pushing it
+        if (!Times_For_Alarm_Ringing.includes(Toggled_Times_True[0])) {
+          Times_For_Alarm_Ringing.push(Toggled_Times_True[0]);
+        }
+        console.log('Time for AlarmTiming', Times_For_Alarm_Ringing);
+        return;
+      }
+    }
+    function handleDeletion(event) {
+      const target = event.target;
+      if (target.className === 'delete') {
+        const TimeID = target.dataset.id;
+        deleteTime(TimeID);
+      }
+      if (target.className === 'SWITCH') {
+        console.log('Switch Toggled');
+        const TimeID = target.dataset.id;
+        for (let Toggled_Obj of Time_List_Array) {
+          if (Toggled_Obj.id == TimeID) {
+            console.log(Toggled_Obj);
+            toggleTime(TimeID, Toggled_Obj);
+          }
+        }
+      }
+    }
+    // Update clock every second
+    function initializeAlarm() {
+      setInterval(updateClock, 1000);
+      document.addEventListener('click', handleDeletion);
+      set_Alarm_btn.addEventListener('click', SetAlarm);
+      select_time.addEventListener('change', takeInputFromDropDown);
+    }
+    initializeAlarm();
+
+  </script>
+</body>
+
+</html>
