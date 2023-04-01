@@ -140,11 +140,13 @@ function SetAlarm() {
         showNotification('This time is already set as an alarm');
         return;
     }
+    else{
     // Create object 
     Timeobj = { HR__FOR_OBJ: SELECTED_HOUR, MIN_FOR_OBJ: SELECTED_MINUTE, SEC_FOR_OBJ: SELECTED_SECOND, AMPM_FOR_OBJ: SELECTED_AMPM, id: Date.now(), TOGGLE_STATUS: true };
     Time_List_Array.push(Timeobj);
     Times_For_Alarm_Ringing.push(Timeobj);
     renderList();
+    }
 }
 var Toggled_Times_false = [];
 var Toggled_Times_True = [];
