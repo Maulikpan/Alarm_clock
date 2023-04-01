@@ -21,7 +21,7 @@ body {
 /* center a container */
 .card {
     margin: 0 auto;
-    width: 450px;
+    width: 400px;
     height: 440px;
     min-height: 400px;
     min-width: 400px;
